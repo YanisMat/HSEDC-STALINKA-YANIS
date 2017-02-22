@@ -6,11 +6,63 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
 -------------------------------- */
+
+
+
+// :: MIXINS
+// --------------------------------------------------
+@mixin opacity($opacity) {
+	opacity: $opacity / 100;
+	filter: alpha(opacity=$opacity);
+}
+
+
+// :: PULSE Preloader
+// --------------------------------------------------
+.pulse {
+	position: relative;
+  /* Temp Postioning */
+  left: 50%;
+  margin-left: -40px;
+  margin-top: 5%;
+
+  &:before, &:after {
+		content: '';
+		border: 5px solid #323232;
+		width: 80px;
+		height: 80px;
+		border-radius: 500px;
+		position: absolute;
+	}
+	&:before { @include animation(pulse-outer 0.8s ease-in infinite); }
+	&:after { @include animation(pulse-inner 0.8s linear infinite); }
+}
+
+@include keyframes('pulse-outer') {
+	0% { @include opacity(100); }
+	50% { @include opacity(50); }
+	100%{ @include opacity(0); }
+}
+
+@include keyframes('pulse-inner') {
+	0%   {
+		@include transform(scale(0));
+		@include opacity(0);
+	}
+	100% {
+		@include transform(scale(1));
+		@include opacity(100);
+	}
+}
+
+
+
+
 
 *, *::after, *::before {
 	box-sizing: border-box;
@@ -34,7 +86,7 @@ a {
 	text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Patterns - reusable parts of our design
 
@@ -48,7 +100,7 @@ Patterns - reusable parts of our design
 	white-space: nowrap;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Menu trigger
 
@@ -65,8 +117,8 @@ Menu trigger
 	background-color: rgba(#000, .8);
 	@include transition(background .2s);
 
-	.cd-icon, 
-	.cd-icon::before, 
+	.cd-icon,
+	.cd-icon::before,
 	.cd-icon::after {
 		/* menu icon created in CSS */
 		position: absolute;
@@ -96,7 +148,7 @@ Menu trigger
 			top: 0;
 			right: 0;
 			width: 100%;
-			height: 100%; 
+			height: 100%;
 			@include transition(transform .3s);
 		}
 
@@ -116,7 +168,7 @@ Menu trigger
 		&::before, &::after {
 			background-color: rgba($color-6, 1);
 		}
-		
+
 		&::before {
 			@include transform(translateY(0) rotate(45deg));
 		}
@@ -154,7 +206,7 @@ Menu trigger
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Projects
 
@@ -296,26 +348,26 @@ Projects
 	}
 }
 
-.cd-projects-previews a, 
+.cd-projects-previews a,
 .cd-projects .preview-image {
 	/* set a background image for each project */
 	background: $color-1 url(../img/img-1.jpg) no-repeat center center;
 	background-size: cover;
 }
 
-.cd-projects-previews li:nth-of-type(2) a, 
+.cd-projects-previews li:nth-of-type(2) a,
 .cd-projects > li:nth-of-type(2) .preview-image {
 	background: $color-2 url(../img/img-2.jpg) no-repeat center center;
 	background-size: cover;
 }
 
-.cd-projects-previews li:nth-of-type(3) a, 
+.cd-projects-previews li:nth-of-type(3) a,
 .cd-projects > li:nth-of-type(3) .preview-image {
 	background: $color-3 url(../img/img-3.jpg) no-repeat center center;
 	background-size: cover;
 }
 
-.cd-projects-previews li:nth-of-type(4) a, 
+.cd-projects-previews li:nth-of-type(4) a,
 .cd-projects > li:nth-of-type(4) .preview-image {
 	background: $color-4 url(../img/img-4.jpg) no-repeat center center;
 	background-size: cover;
@@ -357,7 +409,7 @@ Projects
 
 	h2 {
 		font-size: 2.5rem;
-		line-height: 1.5; 
+		line-height: 1.5;
 		font-weight: 700;
 	}
 
@@ -377,7 +429,7 @@ Projects
 	}
 }
 
-.cd-projects-previews li:nth-of-type(2) .cd-project-title, 
+.cd-projects-previews li:nth-of-type(2) .cd-project-title,
 .cd-projects > li:nth-of-type(2) .cd-project-title {
 	@include transform(translateY(100vh*(2/$items - $items/2 + 1)/$items));
 
@@ -386,7 +438,7 @@ Projects
 	}
 }
 
-.cd-projects-previews li:nth-of-type(3) .cd-project-title, 
+.cd-projects-previews li:nth-of-type(3) .cd-project-title,
 .cd-projects > li:nth-of-type(3) .cd-project-title  {
 	@include transform(translateY(100vh*(2/$items - $items/2 + 2)/$items));
 
@@ -395,7 +447,7 @@ Projects
 	}
 }
 
-.cd-projects-previews li:nth-of-type(4) a .cd-project-title, 
+.cd-projects-previews li:nth-of-type(4) a .cd-project-title,
 .cd-projects > li:nth-of-type(4) .cd-project-title  {
 	@include transform(translateY(100vh*(2/$items - $items/2 + 3)/$items));
 
@@ -491,7 +543,7 @@ li.selected .cd-project-title,
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
  Navigation
 
@@ -576,7 +628,7 @@ li.selected .cd-project-title,
 	}
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 JavaScript Disabled
 
