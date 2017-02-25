@@ -2,9 +2,9 @@
   position: relative;
   left: 50%;
   margin-left: -40px;
-  margin-top: 5%;
+  /*margin-top: 5%;*/
   position: absolute;
-  top: 200px;
+  top: 45%;
 }
 .pulse:before, .pulse:after {
   content: '';
