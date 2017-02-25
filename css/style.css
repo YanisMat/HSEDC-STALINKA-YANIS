@@ -16,6 +16,7 @@ body {
   font-family: "PT Sans", sans-serif;
   color: #ffffff;
   background-color: #262423;
+  overflow: hidden;
 }
 
 a {
@@ -370,11 +371,6 @@ Projects
   transition: opacity 0s;
 }
 /*помех*/
-body,html {
-  padding: 0;
-  margin: 0;
-}
-
 .test {
   position: relative;
   width:100vw;
@@ -415,11 +411,11 @@ body,html {
 
 .buzz_wrapper{
   position:relative;
-  width:700px;
+  width:200px;
   margin:20px auto;
   /*background-color:#000;*/
   overflow:hidden;
-  padding:100px;
+  box-sizing: border-box;
 }
 .scanline{
   width:100%;
